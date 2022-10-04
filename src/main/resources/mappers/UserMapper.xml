@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiu.mapper.UserMapper">
+
+    <!--   public User userLogin(@Param("userName")
+                String username, @Param("pwd") String pwd);  -->
+
+    <select id="userLogin" resultType="user">
+        select * from t_user where user_name=#{userName} and user_pwd = #{pwd}
+    </select>
+
+    <!--User selectUserById(@Param("id") Integer id);-->
+    <select id="selectUserById" resultType="user">
+        select * from t_user where id = #{id}
+    </select>
+
+    <!--int updateUserPassword(int userid,String password);-->
+    <update id="updateUserPassword">
+        update t_user set user_pwd = #{password} where id=#{userid}
+    </update>
+
+    <!--  List<User> selectAllUserName();  -->
+    <select id="selectAllUserName" resultType="User">
+        select user_name from t_user;
+    </select>
+
+</mapper>
