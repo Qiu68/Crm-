@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author qiu
@@ -131,9 +132,9 @@ public class UserController {
 
     @RequestMapping("/queryAllSales")
     @ResponseBody
-    public List<String> queryAllSales(){
-        List<String> userList = userServiceImpl.selectUserAllName();
-        return userList;
+    public List<Map<String,Object>> queryAllSales(){
+        List<Map<String, Object>> userMap = userServiceImpl.selectUserAllName();
+        return userMap;
     }
 
 }

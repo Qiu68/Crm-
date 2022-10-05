@@ -101,14 +101,17 @@ public class SaleChanceServiceImpl extends BaseService<SaleChance,Integer>{
     @Transactional(propagation = Propagation.REQUIRED)
     public void updateSaleChance(SaleChance newSaleChance){
         int result = 0;
+        System.out.println("------------");
+        System.out.println(newSaleChance.getAssignMan());
+        System.out.println("____________");
         //根据新saleChance的id获取原saleChance的记录
         SaleChance oldSaleChance = saleChanceMapper.selectByPrimaryKey(newSaleChance.getId());
         AssertUtil.isTrue(newSaleChance.getId() == null,"没有该记录");
         AssertUtil.isTrue(oldSaleChance == null,"没有该记录");
         paramDecide(newSaleChance.getCustomerName(), newSaleChance.getLinkMan(), newSaleChance.getLinkPhone());
 
-        if (oldSaleChance.getAssignMan() == null){
-            if (newSaleChance.getAssignMan() != null){
+        if (oldSaleChance.getAssignMan() == null || oldSaleChance.getAssignMan() == ""){
+            if (newSaleChance.getAssignMan() != null || newSaleChance.getAssignMan() == ""){
                 newSaleChance.setAssignTime(new Date());
                 newSaleChance.setState(1);
                 newSaleChance.setDevResult(1);

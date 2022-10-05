@@ -10,11 +10,12 @@ layui.use(['form', 'layer'], function () {
     });
 
     $.post(ctx+"/user/queryAllSales",function (res) {
+        console.log(res);
         for(var i=0;i<res.length;i++){
             if($("input[name='man']").val() == res[i].id){
-                $("#assignMan").append("<option value=\""+res[i].id+"\"  selected='selected' >"+res[i].uname+"</option>");
+                $("#assignMan").append("<option value=\""+res[i].user_name+"\"  selected='selected' >"+res[i].user_name+"</option>");
             }else{
-                $("#assignMan").append("<option value=\""+res[i].id+"\"   >"+res[i].uname+"</option>");
+                $("#assignMan").append("<option value=\""+res[i].user_name+"\"   >"+res[i].user_name+"</option>");
             }
 
         }

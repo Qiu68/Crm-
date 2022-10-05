@@ -4,6 +4,7 @@ import com.qiu.pojo.User;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author qiu
@@ -39,5 +40,5 @@ public interface UserService {
      * 获得所有userName
      * @return
      */
-    List<String> selectUserAllName();
+    List<Map<String,Object>> selectUserAllName();
 }

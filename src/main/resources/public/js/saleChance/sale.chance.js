@@ -27,7 +27,7 @@ layui.use(['table','layer'],function(){
             {field: 'description', title: '描述', align:'center'},
             {field: 'createMan', title: '创建人', align:'center'},
             {field: 'createDate', title: '创建时间', align:'center'},
-            {field: 'uname', title: '指派人', align:'center'},
+            {field: 'assignMan', title: '指派人', align:'center'},
             {field: 'assignTime', title: '分配时间', align:'center'},
             {field: 'state', title: '分配状态', align:'center',templet:function(d){
                     return formatterState(d.state);
@@ -148,6 +148,7 @@ layui.use(['table','layer'],function(){
 
 
     table.on('tool(saleChances)',function (obj) {
+          console.log(obj);
           var layEvent =obj.event;
           if(layEvent === "edit"){
               openAddOrUpdateSaleChanceDialog(obj.data.id);
@@ -174,7 +175,7 @@ layui.use(['table','layer'],function(){
     function openAddOrUpdateSaleChanceDialog(sid) {
         var title="营销机会管理-机会添加";
         var url=ctx+"/sale_chance/addOrUpdateSaleChancePage";
-        if(sid){
+        if(sid != null && sid != ''){
             title="营销机会管理-机会更新";
             url=url+"?id="+sid;
         }

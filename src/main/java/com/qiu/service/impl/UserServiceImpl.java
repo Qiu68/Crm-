@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author qiu
@@ -63,13 +64,9 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public List<String> selectUserAllName() {
-        List<User> userList = userMapper.selectAllUserName();
-        List<String> userNameList = new ArrayList<>();
-        for (User user : userList) {
-            userNameList.add(user.getUserName());
-        }
-        return userNameList;
+    public List<Map<String,Object>> selectUserAllName() {
+        List<Map<String,Object>> userMap = userMapper.selectAllUserName();
+        return userMap;
     }
 
 

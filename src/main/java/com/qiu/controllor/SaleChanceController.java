@@ -4,13 +4,11 @@ import com.qiu.bash.BaseController;
 import com.qiu.bash.ResultInfo;
 import com.qiu.pojo.SaleChance;
 import com.qiu.query.SaleChanceQuery;
-import com.qiu.service.SaleChanceService;
 import com.qiu.service.impl.SaleChanceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +43,11 @@ public class SaleChanceController extends BaseController {
 
     @RequestMapping("/addOrUpdateSaleChancePage")
 
-    public String addOrUpdateSaleChancePage(){
+    public String addOrUpdateSaleChancePage(Integer id, HttpServletRequest request){
+        if (id != null){
+            SaleChance saleChance = saleChanceServiceImpl.selectByPrimaryKey(id);
+            request.setAttribute("saleChance",saleChance);
+        }
         return "saleChance/add_update";
     }
 

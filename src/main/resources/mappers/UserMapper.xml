@@ -21,9 +21,21 @@
         update t_user set user_pwd = #{password} where id=#{userid}
     </update>
 
-    <!--  List<User> selectAllUserName();  -->
-    <select id="selectAllUserName" resultType="User">
-        select user_name from t_user;
+    <!--  Map<String,object> selectAllUserName();  -->
+    <select id="selectAllUserName" resultType="java.util.Map">
+        select
+            u.id,u.user_name
+        FROM
+            t_user u
+                LEFT JOIN
+            t_user_role r
+            ON u.id = r.user_id
+                LEFT JOIN
+            t_role tr
+            ON
+                r.role_id = tr.id
+        WHERE
+            tr.role_name = '销售'
     </select>
 
 </mapper>

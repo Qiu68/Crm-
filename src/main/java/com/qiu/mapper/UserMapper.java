@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author qiu
@@ -41,5 +42,5 @@ public interface UserMapper  {
      * 获取全部用户名
      * @return
      */
-    List<User> selectAllUserName();
+    List<Map<String,Object>> selectAllUserName();
 }
