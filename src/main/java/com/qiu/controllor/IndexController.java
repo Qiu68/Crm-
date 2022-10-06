@@ -1,7 +1,6 @@
 package com.qiu.controllor;
 
 import com.qiu.bash.BaseController;
-import com.qiu.pojo.User;
 import com.qiu.service.UserService;
 import com.qiu.utils.LoginUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @create 2022/9/25 15:54
  **/
 @Controller
-public class IndexControllor extends BaseController {
+public class IndexController extends BaseController {
 
     @Autowired
     UserService userService;

@@ -2,6 +2,7 @@ package com.qiu.service.impl;
 
 
 import com.qiu.bash.BaseService;
+import com.qiu.bash.ResultInfo;
 import com.qiu.mapper.SaleChanceMapper;
 import com.qiu.mapper.UserMapper;
 import com.qiu.pojo.SaleChance;
@@ -126,6 +127,19 @@ public class SaleChanceServiceImpl extends BaseService<SaleChance,Integer>{
         }
         newSaleChance.setUpdateDate(new Date());
         AssertUtil.isTrue(saleChanceMapper.updateByPrimaryKeySelective(newSaleChance) != 1,"更新失败");
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void deleteSale_Chance(Integer[] ids){
+        AssertUtil.isTrue(ids ==  null || ids.length == 0,"请选择删除的机会数据");
+        AssertUtil.isTrue(saleChanceMapper.deleteBatch(ids)<ids.length,"机会数据删除失败");
+        /*
+        Integer integer = saleChanceMapper.deleteByPrimaryKey(id);
+        System.out.println("---------");
+        System.out.println(ids);
+        AssertUtil.isTrue(integer == null,"删除失败");
+        return integer;
+         */
     }
 
     /**

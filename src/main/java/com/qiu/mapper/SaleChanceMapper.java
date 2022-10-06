@@ -22,4 +22,6 @@ public interface SaleChanceMapper extends BaseMapper<SaleChance,Integer> {
     Integer updateByPrimaryKeySelective(SaleChance record);
 
     int updateByPrimaryKey(SaleChance record);
+
+
 }

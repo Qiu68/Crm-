@@ -231,7 +231,7 @@
     from
         t_sale_chance
     <where>
-      is_valid = 1 or is_valid = 0
+      is_valid = 1
       <if test="customerName != null and customerName != ''">
         and customerName like concat('%',#{customerName},'%')
       </if>
@@ -241,9 +241,22 @@
       <if test="state != null and state != ''">
         and state = #{state}
       </if>
+      <if test="assignMan != null and assignMan != ''">
+        and assign_man = #{assignMan}
+      </if>
+      <if test="devResult != null and devResult != ''">
+        and dev_result = #{devResult}
+      </if>
     </where>
-
-
   </select>
+
+  <update id="deleteBatch">
+    update t_sale_chance
+    set is_valid=0
+    where id in
+    <foreach collection="array" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
 
 </mapper>

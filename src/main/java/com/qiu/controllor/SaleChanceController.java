@@ -5,6 +5,8 @@ import com.qiu.bash.ResultInfo;
 import com.qiu.pojo.SaleChance;
 import com.qiu.query.SaleChanceQuery;
 import com.qiu.service.impl.SaleChanceServiceImpl;
+import com.qiu.utils.CookieUtil;
+import com.qiu.utils.LoginUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,11 @@ public class SaleChanceController extends BaseController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Map<String,Object> querySaleChancesByParams(SaleChanceQuery saleChanceQuery){
+    public Map<String,Object> querySaleChancesByParams(Integer flag,SaleChanceQuery saleChanceQuery,HttpServletRequest request){
+        if (flag != null && flag == 1){
+          Integer id =  LoginUserUtil.releaseUserIdFromCookie(request);
+          saleChanceQuery.setAssignMan(String.valueOf(id));
+        }
         return saleChanceServiceImpl.queryByParamsForTable(saleChanceQuery);
     }
 
@@ -73,6 +79,15 @@ public class SaleChanceController extends BaseController {
         ResultInfo resultInfo = new ResultInfo();
         saleChanceServiceImpl.updateSaleChance(saleChance);
         resultInfo.setMsg("更新成功");
+        return  resultInfo;
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResultInfo delete(Integer[] ids){
+        ResultInfo resultInfo = new ResultInfo();
+        saleChanceServiceImpl.deleteSale_Chance(ids);
+        resultInfo.setMsg("删除成功");
         return  resultInfo;
     }
 
