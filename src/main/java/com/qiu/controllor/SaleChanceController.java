@@ -33,6 +33,8 @@ public class SaleChanceController extends BaseController {
           Integer id =  LoginUserUtil.releaseUserIdFromCookie(request);
           saleChanceQuery.setAssignMan(String.valueOf(id));
         }
+        System.out.println("--------");
+        System.out.println(saleChanceQuery);
         return saleChanceServiceImpl.queryByParamsForTable(saleChanceQuery);
     }
 

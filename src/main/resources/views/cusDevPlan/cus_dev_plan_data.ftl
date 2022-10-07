@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>客户开发计划管理</title>
-	<#include "../common.ftl">
+	<#include "common.ftl">
 </head>
 <body class="childrenBody">
 	<div class="layui-col-md12">

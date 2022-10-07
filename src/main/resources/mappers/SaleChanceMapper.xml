@@ -233,10 +233,10 @@
     <where>
       is_valid = 1
       <if test="customerName != null and customerName != ''">
-        and customerName like concat('%',#{customerName},'%')
+        and customer_name = #{customerName}
       </if>
       <if test="createMan != null and createMan != ''">
-        and createMan like concat('%',#{createMan},'%')
+        and create_man = #{createMan}
       </if>
       <if test="state != null and state != ''">
         and state = #{state}
