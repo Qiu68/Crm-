@@ -69,6 +69,7 @@ layui.use(['table','layer'],function(){
     // 打开添加计划项数据页面
     function openAddOrUpdateCusDevPlanDialog(id){
         var url  =  ctx+"/cus_dev_plan/addOrUpdateCusDevPlanPage?sid="+$("input[name='id']").val();
+       console.log(url);
         var title="计划项管理-添加计划项";
         if(id){
             url = url+"&id="+id;

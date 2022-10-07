@@ -12,6 +12,8 @@ public class CusDevPlan {
 
     private String planItem;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone ="GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date planDate;
 
     private String exeAffect;
@@ -21,6 +23,7 @@ public class CusDevPlan {
     private Date createDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone ="GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
 
     private Integer isValid;
@@ -87,5 +90,19 @@ public class CusDevPlan {
 
     public void setIsValid(Integer isValid) {
         this.isValid = isValid;
+    }
+
+    @Override
+    public String toString() {
+        return "CusDevPlan{" +
+                "id=" + id +
+                ", saleChanceId=" + saleChanceId +
+                ", planItem='" + planItem + '\'' +
+                ", planDate=" + planDate +
+                ", exeAffect='" + exeAffect + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", isValid=" + isValid +
+                '}';
     }
 }

@@ -5,8 +5,8 @@
 </head>
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;">
-    <input name="id" type="hidden" value="${(cusDevPlan.id)!}"/>
-    <input name="saleChanceId" type="hidden" value="${sid!}"/>
+    <input name="id" type="text" value="${(cusDevPlan.id)!}"/>
+    <input name="saleChanceId" type="text" value="${sId!}"/>
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">计划项内容</label>
         <div class="layui-input-block">

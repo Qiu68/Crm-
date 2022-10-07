@@ -9,7 +9,7 @@
 		<div class="layui-card">
 			<div class="layui-card-body">
 				<form class="layui-form" >
-					<input name="id" type="hidden" value="${(saleChance.id)!}"/>
+					<input name="id" type="text" value="${(saleChance.id)!}"/>
 					<div class="layui-form-item layui-row">
 						<div class="layui-col-xs6">
 							<label class="layui-form-label">客户名称</label>
