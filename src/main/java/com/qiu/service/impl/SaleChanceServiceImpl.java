@@ -143,6 +143,22 @@ public class SaleChanceServiceImpl extends BaseService<SaleChance,Integer>{
     }
 
     /**
+     * 根据id更新开发结果
+     * @param sid
+     * @param devResult
+     * @return
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Integer updateCusDelPlanDevResultById(Integer sid,Integer devResult){
+        AssertUtil.isTrue(sid == null || sid == 0,"请输入id");
+        AssertUtil.isTrue(devResult == null || sid == 0,"请输入结果");
+        Integer result = null;
+        result = saleChanceMapper.updateCusDevPlanResultById(sid, devResult);
+        AssertUtil.isTrue(result == null || result != 1,"更新错误");
+        return  result;
+    }
+
+    /**
      * 判断参数是否为空
      * @param customerName
      * @param linkMan

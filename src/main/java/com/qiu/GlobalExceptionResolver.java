@@ -1,5 +1,6 @@
 package com.qiu;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.alibaba.fastjson.JSON;
 import com.qiu.bash.ResultInfo;
 import com.qiu.exceptions.NoLoginException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
+import java.util.Objects;
 
 /**
  * @author qiu
@@ -51,7 +53,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
             HandlerMethod handlerMethod = (HandlerMethod) o;
             //通过反射获取方法注解
             ResponseBody responseBody = handlerMethod.getMethod().getDeclaredAnnotation(ResponseBody.class);
-            //如果没有responseBody注解，则返回数据
+            //如果没有responseBody注解，则返回视图
             if (responseBody == null){
                 if (e instanceof ParamsException){
                     ParamsException pm = (ParamsException) e;
@@ -68,6 +70,12 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
                     mv.addObject("code", pm.getCode());
                     resultInfo.setCode(pm.getCode());
                     resultInfo.setMsg(pm.getMsg());
+                }
+                else if (e instanceof Exception){
+                    mv.addObject("msg", "系统错误");
+                    mv.addObject("code", 300);
+                    resultInfo.setCode(300);
+                    resultInfo.setMsg("系统错误");
                 }
                 httpServletResponse.setCharacterEncoding("utf-8");
                 httpServletResponse.setContentType("application/json;charset=UTF-8");

@@ -18,4 +18,12 @@ public interface CusDevPlanMapper extends BaseMapper<CusDevPlan,Integer> {
      * @return
      */
     List<CusDevPlan> checkSaleChanceId(Integer saleChanceId);
+
+    /**
+     * 根据id更改开发结果
+     * @param id
+     * @param devResult
+     * @return
+     */
+
 }

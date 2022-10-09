@@ -5,11 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.qiu.bash.BaseQuery;
 import com.qiu.bash.BaseService;
 import com.qiu.mapper.CusDevPlanMapper;
+import com.qiu.mapper.SaleChanceMapper;
 import com.qiu.pojo.CusDevPlan;
 import com.qiu.query.CusDevPlanQuery;
 import com.qiu.utils.AssertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.Date;
@@ -26,6 +29,9 @@ public class CusDevPlanServiceImpl extends BaseService<CusDevPlan,Integer> {
 
     @Autowired
     private CusDevPlanMapper cusDevPlanMapper;
+
+    @Autowired
+    private SaleChanceMapper saleChanceMapper;
 
     public Map<String, Object> queryByParamsForTable(CusDevPlanQuery baseQuery) {
         Map<String,Object> result = new HashMap<String,Object>();
@@ -52,6 +58,20 @@ public class CusDevPlanServiceImpl extends BaseService<CusDevPlan,Integer> {
         AssertUtil.isTrue(integer == null || integer == 0,"系统错误");
         return integer;
     }
+
+    /**
+     * 根据主键id删除记录
+     * @param id
+     * @return
+     */
+    public Integer delete(Integer id){
+        AssertUtil.isTrue(id == null,"id错误");
+        Integer result = cusDevPlanMapper.deleteByPrimaryKey(id);
+        AssertUtil.isTrue(result == null || result == 0,"查询错误");
+        return result;
+    }
+
+
 
     private void paramsDecide(CusDevPlan cusDevPlan) {
         List<CusDevPlan> cusDevPlan1 = cusDevPlanMapper.checkSaleChanceId(cusDevPlan.getSaleChanceId());

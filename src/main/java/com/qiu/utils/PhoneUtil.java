@@ -2,6 +2,7 @@ package com.qiu.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +23,7 @@ public class PhoneUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(isMobile("19699999999"));
+        System.out.println(new Date().toString());
+        System.out.println(isMobile("17762720107"));
     }
 }

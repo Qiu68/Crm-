@@ -89,6 +89,7 @@ layui.use(['table','layer'],function(){
 
 
     function updateSaleChanceDevResult(sid,devResult) {
+        console.log(sid+"d2434543")
         layer.confirm('确定执行当前操作？', {icon: 3, title: "计划项维护"}, function (index) {
             $.post(ctx+"/sale_chance/updateSaleChanceDevResult",
                 {

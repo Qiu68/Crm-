@@ -38,4 +38,62 @@
             tr.role_name = '销售'
     </select>
 
+    <!--List<Map<String,Object>> selectByParams(BaseQuery baseQuery);-->
+    <select id="selectByParams" parameterType="com.qiu.query.UserQuery" resultType="com.qiu.pojo.User">
+        select
+               id,user_name,true_name,email,phone,create_date,update_date
+        from
+            t_user
+        <where>
+            is_valid = 1
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="email != null and email  != ''">
+                and email  = #{email}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+        </where>
+    </select>
+
+    <!--Integer addUser(User user);-->
+    <insert id="addUser">
+        insert into
+            t_user(id,user_name,user_pwd,email,phone,is_valid,create_date,update_date)
+        values(#{id},#{userName},#{userPwd},#{email},#{phone},#{isValid},#{createDate},#{updateDate})
+    </insert>
+
+    <!--Integer updateUser(User user);-->
+    <update id="updateUser">
+        update t_user set user_pwd = #{userPwd},true_name = #{userName},email = #{email},
+                          phone = #{phone},is_valid = #{isValid},update_date = #{updateDate}
+                      where id = #{id}
+    </update>
+
+    <!--Integer deleteUser(Integer[] ids);-->
+    <update id="deleteUser">
+        update
+            t_user
+        set
+            is_valid = 0
+        where
+              id
+        in
+        <foreach collection="array" separator="," item="id" open="(" close=")" >
+          #{id}
+        </foreach>
+    </update>
+
+    <!--User selectUserByName(String userName);-->
+    <select id="selectUserByName" resultType="com.qiu.pojo.User">
+        select
+            user_name
+        from
+            t_user
+        where
+            user_name = #{userName}
+    </select>
+
 </mapper>

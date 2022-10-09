@@ -6,6 +6,7 @@ import com.qiu.query.CusDevPlanQuery;
 import com.qiu.query.SaleChanceQuery;
 import com.qiu.service.impl.CusDevPlanServiceImpl;
 import com.qiu.service.impl.SaleChanceServiceImpl;
+import com.qiu.utils.AssertUtil;
 import com.qiu.utils.LoginUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,10 +42,6 @@ public class CusDevPlanController {
     public Map<String,Object> querySaleChancesByParams(Integer sid,CusDevPlanQuery cusDevPlanQuery,HttpServletRequest request){
         cusDevPlanQuery.setSaleChanceId(sid);
         request.setAttribute("sId",sid);
-        System.out.println("----797978686------");
-        System.out.println(cusDevPlanQuery);
-        System.out.println(sid);
-
         return cusDevPlanService.queryByParamsForTable(cusDevPlanQuery);
     }
 
@@ -63,9 +60,6 @@ public class CusDevPlanController {
         request.removeAttribute("cusDevPlan");
         request.setAttribute("sId",sid);
         request.setAttribute("cusDevPlan",cusDevPlanService.selectByPrimaryKey(id));
-        System.out.println("---------");
-        System.out.println(id);
-        System.out.println("_____!____");
         return "cusDevPlan/add_update";
     }
 
@@ -85,6 +79,14 @@ public class CusDevPlanController {
         return  resultInfo;
     }
 
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResultInfo delete(Integer id){
+        ResultInfo resultInfo = new ResultInfo();
+        Integer save = cusDevPlanService.delete(id);
+        AssertUtil.isTrue(save == null || save == 0,"");
+        return  resultInfo;
+    }
 
 
 }

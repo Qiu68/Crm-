@@ -259,4 +259,9 @@
     </foreach>
   </update>
 
+  <!--Integer updateCusDevPlanResultById(Integer sid,Integer devResult);-->
+  <update id="updateCusDevPlanResultById">
+    update t_sale_chance SET dev_Result = #{devResult} where id = #{sid}
+  </update>
+
 </mapper>

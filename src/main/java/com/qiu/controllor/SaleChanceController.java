@@ -84,6 +84,16 @@ public class SaleChanceController extends BaseController {
         return  resultInfo;
     }
 
+    @RequestMapping("/updateSaleChanceDevResult")
+    @ResponseBody
+    public ResultInfo updateSaleChanceDevResult(Integer id,Integer devResult){
+        ResultInfo r = new ResultInfo();
+        System.out.println("qiu");
+        System.out.println(id+","+devResult);
+        saleChanceServiceImpl.updateCusDelPlanDevResultById(id,devResult);
+        return   r;
+    }
+
     @RequestMapping("/delete")
     @ResponseBody
     public ResultInfo delete(Integer[] ids){
